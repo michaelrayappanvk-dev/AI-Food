@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Dashboard</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- BRAND -->
+
+        <h1>
+            Welcome to FOOD<span>AI</span>
+        </h1>
+
+
+        <!-- TITLE -->
+
+        <h2>
+            Customer Dashboard
+        </h2>
+
+
+        <!-- LOGIN STATUS -->
+
+        <div class="dashboard-status">
+
+            <div class="status-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <h3>
+                    Login Successful
+                </h3>
+
+                <p>
+                    You are now logged in as a customer.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- DASHBOARD OPTIONS -->
+
+        <div class="customer-options">
+
+
+            <!-- FIND FOOD -->
+
+            <div class="customer-card">
+
+                <div class="customer-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    Find Food
+                </h3>
+
+                <p>
+                    Discover restaurants and
+                    delicious food near you.
+                </p>
+
+                <a href="/restaurants">
+                    Explore →
+                </a>
+
+            </div>
+
+
+            <!-- MY CART -->
+
+            <div class="customer-card">
+
+                <div class="customer-icon">
+                    🛒
+                </div>
+
+                <h3>
+                    My Cart
+                </h3>
+
+                <p>
+                    View your selected food
+                    items and place an order.
+                </p>
+
+                <a href="#">
+                    View Cart →
+                </a>
+
+            </div>
+
+
+            <!-- MY ORDERS -->
+
+            <div class="customer-card">
+
+                <div class="customer-icon">
+                    📦
+                </div>
+
+                <h3>
+                    My Orders
+                </h3>
+
+                <p>
+                    Check your previous and
+                    current food orders.
+                </p>
+
+                <a href="#">
+                    View Orders →
+                </a>
+
+            </div>
+
+
+            <!-- TRACK DELIVERY -->
+
+            <div class="customer-card">
+
+                <div class="customer-icon">
+                    🛵
+                </div>
+
+                <h3>
+                    Track Delivery
+                </h3>
+
+                <p>
+                    Track your delivery using
+                    our smart AI route system.
+                </p>
+
+                <a href="#">
+                    Track →
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- BOTTOM BUTTONS -->
+
+        <div class="dashboard-buttons">
+
+            <a href="/" class="home-btn">
+                ← Home
+            </a>
+
+            <a href="/logout" class="logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>

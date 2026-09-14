@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Track Delivery | FOODAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="track-page">
+
+    <!-- HEADER -->
+    <div class="track-header">
+        <div>
+            <h1>Track <span>Delivery</span></h1>
+            <p>Real-time order tracking</p>
+        </div>
+
+        <a href="/customer-dashboard" class="back-btn">
+            ← Dashboard
+        </a>
+    </div>
+
+
+    <!-- ORDER STATUS -->
+    <div class="tracking-card">
+
+        <div class="order-top">
+            <div>
+                <p class="small-text">ORDER STATUS</p>
+                <h2>Order Confirmed</h2>
+            </div>
+
+            <div class="status-badge">
+                ● ACTIVE
+            </div>
+        </div>
+
+
+        <!-- PROGRESS -->
+        <div class="progress-container">
+
+            <div class="track-step active">
+                <div class="step-circle">✓</div>
+                <h3>Order Placed</h3>
+                <p>Order received</p>
+            </div>
+
+            <div class="track-line active-line"></div>
+
+            <div class="track-step active">
+                <div class="step-circle">✓</div>
+                <h3>Preparing</h3>
+                <p>Restaurant preparing</p>
+            </div>
+
+            <div class="track-line"></div>
+
+            <div class="track-step">
+                <div class="step-circle">3</div>
+                <h3>On the Way</h3>
+                <p>Delivery partner</p>
+            </div>
+
+            <div class="track-line"></div>
+
+            <div class="track-step">
+                <div class="step-circle">4</div>
+                <h3>Delivered</h3>
+                <p>Enjoy your food</p>
+            </div>
+
+        </div>
+
+
+        <!-- DELIVERY INFO -->
+        <div class="delivery-info">
+
+            <div class="info-box">
+                <span>Restaurant</span>
+                <strong>Pizza Hub</strong>
+            </div>
+
+            <div class="info-box">
+                <span>Estimated Time</span>
+                <strong>25–30 min</strong>
+            </div>
+
+            <div class="info-box">
+                <span>Delivery Partner</span>
+                <strong>Assigned</strong>
+            </div>
+
+        </div>
+
+
+        <!-- ADDRESS -->
+        <div class="destination-box">
+
+            <div class="destination-icon">
+                📍
+            </div>
+
+            <div>
+                <span>DELIVERING TO</span>
+
+                <p>
+                    {{ address.get('door_number', '') }},
+                    {{ address.get('street', '') }},
+                    {{ address.get('landmark', '') }},
+                    {{ address.get('district', '') }},
+                    {{ address.get('state', '') }} -
+                    {{ address.get('pincode', '') }}
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+        <div class="track-actions">
+
+            <a href="/customer-dashboard" class="secondary-btn">
+                Back to Dashboard
+            </a>
+
+            <a href="/restaurants" class="primary-btn">
+                Order More Food →
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<style>
+
+/* TRACK PAGE */
+
+.track-page {
+    min-height: 100vh;
+    padding: 45px 7%;
+    box-sizing: border-box;
+    color: white;
+}
+
+
+/* HEADER */
+
+.track-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.track-header h1 {
+    margin: 0;
+    font-size: 38px;
+    font-weight: 800;
+}
+
+.track-header h1 span {
+    color: #39ff72;
+}
+
+.track-header p {
+    margin-top: 7px;
+    color: #7f8982;
+    font-size: 14px;
+}
+
+
+/* BACK BUTTON */
+
+.back-btn {
+    text-decoration: none;
+    color: #39ff72;
+    border: 1px solid #194727;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #39ff72;
+    color: #020403;
+}
+
+
+/* CARD */
+
+.tracking-card {
+    max-width: 1050px;
+    margin: auto;
+    padding: 35px;
+    background: #07130a;
+    border: 1px solid #194727;
+    border-radius: 18px;
+    box-shadow: 0 0 40px rgba(57,255,114,0.06);
+}
+
+
+/* TOP */
+
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #163d21;
+}
+
+.small-text {
+    color: #6f7c73;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    margin: 0 0 8px;
+}
+
+.order-top h2 {
+    margin: 0;
+    font-size: 25px;
+}
+
+
+.status-badge {
+    color: #39ff72;
+    border: 1px solid #39ff72;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+
+/* PROGRESS */
+
+.progress-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 50px 0;
+}
+
+.track-step {
+    width: 145px;
+    text-align: center;
+}
+
+.step-circle {
+    width: 42px;
+    height: 42px;
+    margin: auto;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #35503c;
+    color: #69766d;
+    background: #020403;
+
+    font-weight: 700;
+}
+
+.track-step.active .step-circle {
+    background: #39ff72;
+    border-color: #39ff72;
+    color: #020403;
+    box-shadow: 0 0 18px rgba(57,255,114,0.35);
+}
+
+.track-step h3 {
+    font-size: 12px;
+    margin: 12px 0 5px;
+}
+
+.track-step p {
+    color: #69736c;
+    font-size: 10px;
+    margin: 0;
+}
+
+.track-line {
+    width: 80px;
+    height: 2px;
+    margin-top: 21px;
+    background: #25402c;
+}
+
+.active-line {
+    background: #39ff72;
+}
+
+
+/* DELIVERY INFO */
+
+.delivery-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.info-box {
+    padding: 20px;
+    background: #020403;
+    border: 1px solid #163d21;
+    border-radius: 12px;
+}
+
+.info-box span {
+    display: block;
+    color: #69736c;
+    font-size: 11px;
+    margin-bottom: 8px;
+}
+
+.info-box strong {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+
+/* DESTINATION */
+
+.destination-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 20px;
+    background: #020403;
+    border: 1px solid #163d21;
+    border-radius: 12px;
+}
+
+.destination-icon {
+    font-size: 24px;
+}
+
+.destination-box span {
+    color: #69736c;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.destination-box p {
+    margin: 6px 0 0;
+    color: #d6ddd8;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* ACTIONS */
+
+.track-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.secondary-btn,
+.primary-btn {
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.secondary-btn {
+    color: #aab4ad;
+    border: 1px solid #25402c;
+}
+
+.primary-btn {
+    color: #020403;
+    background: #39ff72;
+}
+
+.secondary-btn:hover {
+    border-color: #39ff72;
+    color: #39ff72;
+}
+
+.primary-btn:hover {
+    box-shadow: 0 0 20px rgba(57,255,114,0.25);
+}
+
+
+/* MOBILE */
+
+@media (max-width: 750px) {
+
+    .track-page {
+        padding: 30px 20px;
+    }
+
+    .track-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .track-header h1 {
+        font-size: 30px;
+    }
+
+    .tracking-card {
+        padding: 22px;
+    }
+
+    .progress-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .track-step {
+        width: 100%;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .step-circle {
+        margin: 0;
+        flex-shrink: 0;
+    }
+
+    .track-line {
+        display: none;
+    }
+
+    .delivery-info {
+        grid-template-columns: 1fr;
+    }
+
+    .track-actions {
+        flex-direction: column;
+    }
+
+    .secondary-btn,
+    .primary-btn {
+        text-align: center;
+    }
+}
+
+</style>
+
+</body>
+</html>

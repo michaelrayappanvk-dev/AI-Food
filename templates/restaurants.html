@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Restaurants - FOODAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="restaurant-page">
+
+    <!-- HEADER -->
+
+    <div class="restaurant-header">
+
+        <div>
+
+            <h1>
+                FOOD<span>AI</span>
+            </h1>
+
+            <p>
+                Discover restaurants near you
+            </p>
+
+        </div>
+
+        <a href="/customer-dashboard"
+           class="back-btn">
+            ← Dashboard
+        </a>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="restaurant-search">
+
+        <input
+            type="text"
+            placeholder="Search restaurants or food..."
+        >
+
+        <button type="button">
+            Search
+        </button>
+
+    </div>
+
+
+    <!-- PAGE TITLE -->
+
+    <div class="restaurant-title">
+
+        <h2>
+            Restaurants Near You
+        </h2>
+
+        <p>
+            Find the best food with smart delivery routes.
+        </p>
+
+    </div>
+
+
+    <!-- RESTAURANT CARDS -->
+
+    <div class="restaurant-grid">
+
+
+        <!-- RESTAURANT 1 -->
+
+        <div class="restaurant-card">
+
+            <div class="restaurant-image">
+                🍕
+            </div>
+
+            <div class="restaurant-info">
+
+                <h3>
+                    Pizza Hub
+                </h3>
+
+                <p class="location">
+                    📍 Salem
+                </p>
+
+                <div class="restaurant-details">
+
+                    <span>
+                        ⭐ 4.5
+                    </span>
+
+                    <span>
+                        📍 1.2 km
+                    </span>
+
+                </div>
+
+                <p class="food-info">
+                    Pizza • Burger • Pasta
+                </p>
+
+                <a href="/food-menu"
+                   class="order-btn">
+                    View Food →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESTAURANT 2 -->
+
+        <div class="restaurant-card">
+
+            <div class="restaurant-image">
+                🍔
+            </div>
+
+            <div class="restaurant-info">
+
+                <h3>
+                    Burger Point
+                </h3>
+
+                <p class="location">
+                    📍 Salem
+                </p>
+
+                <div class="restaurant-details">
+
+                    <span>
+                        ⭐ 4.3
+                    </span>
+
+                    <span>
+                        📍 2.4 km
+                    </span>
+
+                </div>
+
+                <p class="food-info">
+                    Burger • Fries • Beverages
+                </p>
+
+                <a href="/food-menu"
+                   class="order-btn">
+                    View Food →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESTAURANT 3 -->
+
+        <div class="restaurant-card">
+
+            <div class="restaurant-image">
+                🍗
+            </div>
+
+            <div class="restaurant-info">
+
+                <h3>
+                    Chicken House
+                </h3>
+
+                <p class="location">
+                    📍 Salem
+                </p>
+
+                <div class="restaurant-details">
+
+                    <span>
+                        ⭐ 4.6
+                    </span>
+
+                    <span>
+                        📍 3.1 km
+                    </span>
+
+                </div>
+
+                <p class="food-info">
+                    Chicken • Rice • Grills
+                </p>
+
+                <a href="/food-menu"
+                   class="order-btn">
+                    View Food →
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- RESTAURANT 4 -->
+
+        <div class="restaurant-card">
+
+            <div class="restaurant-image">
+                🍛
+            </div>
+
+            <div class="restaurant-info">
+
+                <h3>
+                    South Indian Kitchen
+                </h3>
+
+                <p class="location">
+                    📍 Salem
+                </p>
+
+                <div class="restaurant-details">
+
+                    <span>
+                        ⭐ 4.7
+                    </span>
+
+                    <span>
+                        📍 1.8 km
+                    </span>
+
+                </div>
+
+                <p class="food-info">
+                    Dosa • Idli • Meals
+                </p>
+
+                <a href="/food-menu"
+                   class="order-btn">
+                    View Food →
+                </a>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- LOGOUT -->
+
+    <div class="restaurant-bottom">
+
+        <a href="/logout"
+           class="logout-btn">
+            Logout
+        </a>
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

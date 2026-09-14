@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Verify OTP</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <h1>FOOD<span>AI</span></h1>
+
+    <h2>Verify OTP</h2>
+
+    <p>
+        OTP has been sent to your mobile number.
+    </p>
+
+    {% if error %}
+        <p style="color:#ff5555;">
+            {{ error }}
+        </p>
+    {% endif %}
+
+    <form method="POST"
+          action="{{ url_for('verify_otp') }}">
+
+        <input
+            type="text"
+            name="otp"
+            placeholder="Enter 6-digit OTP"
+            maxlength="6"
+            inputmode="numeric"
+            required
+        >
+
+        <button type="submit">
+            Verify OTP →
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

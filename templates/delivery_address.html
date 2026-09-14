@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Delivery Address - FOODAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="address-page">
+
+
+    <!-- HEADER -->
+
+    <div class="address-header">
+
+        <div>
+
+            <h1>
+                FOOD<span>AI</span>
+            </h1>
+
+            <p>
+                Enter your delivery details
+            </p>
+
+        </div>
+
+
+        <a href="/cart"
+           class="back-btn">
+
+            ← Cart
+
+        </a>
+
+    </div>
+
+
+
+    <!-- ADDRESS CONTAINER -->
+
+    <div class="address-container">
+
+
+        <div class="address-title">
+
+            <h2>
+                📍 Delivery Address
+            </h2>
+
+            <p>
+                Where should we deliver your order?
+            </p>
+
+        </div>
+
+
+
+        <!-- ADDRESS FORM -->
+
+        <form method="POST"
+              action="/delivery-address">
+
+
+            <!-- ROW 1 -->
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Door Number
+                    </label>
+
+                    <input
+                        type="text"
+                        name="door_number"
+                        placeholder="Enter door number"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Street
+                    </label>
+
+                    <input
+                        type="text"
+                        name="street"
+                        placeholder="Enter street name"
+                        required>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ROW 2 -->
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Landmark
+                    </label>
+
+                    <input
+                        type="text"
+                        name="landmark"
+                        placeholder="Nearby landmark">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        District
+                    </label>
+
+                    <input
+                        type="text"
+                        name="district"
+                        placeholder="Enter district"
+                        required>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- ROW 3 -->
+
+            <div class="form-row">
+
+
+                <div class="form-group">
+
+                    <label>
+                        State
+                    </label>
+
+                    <input
+                        type="text"
+                        name="state"
+                        placeholder="Enter state"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Pincode
+                    </label>
+
+                    <input
+                        type="text"
+                        name="pincode"
+                        placeholder="6-digit pincode"
+                        maxlength="6"
+                        inputmode="numeric"
+                        required>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- PHONE -->
+
+            <div class="form-group full-width">
+
+                <label>
+                    Contact Number
+                </label>
+
+                <input
+                    type="tel"
+                    name="phone"
+                    placeholder="Enter contact number"
+                    maxlength="10"
+                    inputmode="numeric"
+                    required>
+
+            </div>
+
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="address-submit-btn">
+
+                Continue to Confirm Order →
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+
+    <!-- BOTTOM BUTTONS -->
+
+    <div class="address-bottom">
+
+
+        <a href="/customer-dashboard"
+           class="home-btn">
+
+            ← Dashboard
+
+        </a>
+
+
+        <a href="/logout"
+           class="logout-btn">
+
+            Logout
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>

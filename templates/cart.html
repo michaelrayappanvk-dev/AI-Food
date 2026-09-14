@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Cart - FOODAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="cart-page">
+
+
+    <!-- HEADER -->
+
+    <div class="cart-header">
+
+        <div>
+
+            <h1>
+                FOOD<span>AI</span>
+            </h1>
+
+            <p>
+                Review your selected food
+            </p>
+
+        </div>
+
+
+        <a href="/food-menu"
+           class="back-btn">
+
+            ← Food Menu
+
+        </a>
+
+    </div>
+
+
+
+    <!-- TITLE -->
+
+    <div class="cart-title">
+
+        <h2>
+            🛒 My Cart
+        </h2>
+
+        <p>
+            Your selected food items
+        </p>
+
+    </div>
+
+
+
+    <!-- CART CONTENT -->
+
+    <div id="cart-content">
+
+    </div>
+
+
+
+    <!-- BOTTOM BUTTONS -->
+
+    <div class="cart-bottom">
+
+        <a href="/customer-dashboard"
+           class="home-btn">
+
+            ← Dashboard
+
+        </a>
+
+
+        <a href="/logout"
+           class="logout-btn">
+
+            Logout
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =================================
+   LOAD CART
+================================= */
+
+function loadCart() {
+
+
+    let cart = JSON.parse(
+        localStorage.getItem("foodCart")
+    ) || [];
+
+
+    let content =
+        document.getElementById("cart-content");
+
+
+
+    /* =================================
+       EMPTY CART
+    ================================= */
+
+    if (cart.length === 0) {
+
+
+        content.innerHTML = `
+
+            <div class="empty-cart">
+
+                <div class="empty-cart-icon">
+                    🛒
+                </div>
+
+
+                <h2>
+                    Your Cart is Empty
+                </h2>
+
+
+                <p>
+                    Add some delicious food to continue.
+                </p>
+
+
+                <a href="/food-menu"
+                   class="browse-food-btn">
+
+                    Browse Food →
+
+                </a>
+
+            </div>
+
+        `;
+
+
+        return;
+
+    }
+
+
+
+    /* =================================
+       CALCULATE TOTAL
+    ================================= */
+
+    let foodTotal = 0;
+
+    let totalItems = 0;
+
+
+    cart.forEach(function(item) {
+
+
+        let quantity =
+            item.quantity || 1;
+
+
+        let price =
+            Number(item.price);
+
+
+        foodTotal +=
+            price * quantity;
+
+
+        totalItems +=
+            quantity;
+
+    });
+
+
+
+    /* =================================
+       DELIVERY FEE
+    ================================= */
+
+    let deliveryFee = 40;
+
+
+    let grandTotal =
+        foodTotal + deliveryFee;
+
+
+
+    /* =================================
+       CART ITEMS
+    ================================= */
+
+    let itemsHTML = "";
+
+
+    cart.forEach(function(item, index) {
+
+
+        let quantity =
+            item.quantity || 1;
+
+
+        let price =
+            Number(item.price);
+
+
+        let itemTotal =
+            price * quantity;
+
+
+
+        itemsHTML += `
+
+            <div class="cart-item">
+
+
+                <div class="cart-item-icon">
+                    🍽️
+                </div>
+
+
+
+                <div class="cart-item-info">
+
+                    <h3>
+                        ${item.name}
+                    </h3>
+
+
+                    <p>
+                        Pizza Hub
+                    </p>
+
+
+                    <p>
+                        ₹${price} × ${quantity}
+                    </p>
+
+                </div>
+
+
+
+                <div class="cart-item-price">
+
+                    ₹${itemTotal}
+
+                </div>
+
+
+
+                <button
+                    type="button"
+                    onclick="removeItem(${index})"
+                    style="
+                        background: transparent;
+                        border: 1px solid #194727;
+                        color: #ff5555;
+                        padding: 8px 12px;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-weight: 600;
+                    ">
+
+                    Remove
+
+                </button>
+
+
+            </div>
+
+        `;
+
+    });
+
+
+
+    /* =================================
+       DISPLAY CART
+    ================================= */
+
+    content.innerHTML = `
+
+        <div class="cart-container">
+
+
+            <!-- ITEMS -->
+
+            <div class="cart-items">
+
+                ${itemsHTML}
+
+            </div>
+
+
+
+            <!-- SUMMARY -->
+
+            <div class="order-summary">
+
+
+                <h3>
+                    Order Summary
+                </h3>
+
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Items
+                    </span>
+
+                    <span>
+                        ${totalItems}
+                    </span>
+
+                </div>
+
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Food Total
+                    </span>
+
+                    <span>
+                        ₹${foodTotal}
+                    </span>
+
+                </div>
+
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Delivery Fee
+                    </span>
+
+                    <span>
+                        ₹${deliveryFee}
+                    </span>
+
+                </div>
+
+
+
+                <div class="summary-line"></div>
+
+
+
+                <div class="summary-total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span>
+                        ₹${grandTotal}
+                    </span>
+
+                </div>
+
+
+
+                <!-- UPDATED BUTTON -->
+
+                <button
+                    type="button"
+                    class="place-order-btn"
+                    onclick="placeOrder()">
+
+                    Continue to Address →
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    `;
+
+}
+
+
+
+/* =================================
+   REMOVE ITEM
+================================= */
+
+function removeItem(index) {
+
+
+    let cart = JSON.parse(
+        localStorage.getItem("foodCart")
+    ) || [];
+
+
+    cart.splice(index, 1);
+
+
+    localStorage.setItem(
+        "foodCart",
+        JSON.stringify(cart)
+    );
+
+
+    loadCart();
+
+}
+
+
+
+/* =================================
+   CONTINUE TO DELIVERY ADDRESS
+================================= */
+
+function placeOrder() {
+
+
+    let cart = JSON.parse(
+        localStorage.getItem("foodCart")
+    ) || [];
+
+
+    if (cart.length === 0) {
+
+        alert(
+            "Your cart is empty!"
+        );
+
+        return;
+
+    }
+
+
+    /* Go to Delivery Address */
+
+    window.location.href =
+        "/delivery-address";
+
+}
+
+
+
+/* =================================
+   START
+================================= */
+
+loadCart();
+
+
+</script>
+
+
+</body>
+
+</html>

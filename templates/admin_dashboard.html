@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <h1>FOOD<span>AI</span></h1>
+
+    <h2>Admin Dashboard</h2>
+
+    <p>Admin login successful.</p>
+
+    <div class="admin-cards">
+
+        <div>
+            <h3>Customers</h3>
+            <p>Manage customers</p>
+        </div>
+
+        <div>
+            <h3>Restaurants</h3>
+            <p>Manage restaurants</p>
+        </div>
+
+        <div>
+            <h3>Orders</h3>
+            <p>Manage orders</p>
+        </div>
+
+        <div>
+            <h3>Delivery</h3>
+            <p>Track deliveries</p>
+        </div>
+
+    </div>
+
+    <br>
+
+    <a href="/">Home</a>
+
+    <a href="/logout">Logout</a>
+
+</div>
+
+</body>
+</html>

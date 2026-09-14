@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Confirm Order - FOODAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="confirm-page">
+
+
+    <!-- HEADER -->
+
+    <div class="confirm-header">
+
+        <div>
+
+            <h1>
+                FOOD<span>AI</span>
+            </h1>
+
+            <p>
+                Review and confirm your order
+            </p>
+
+        </div>
+
+        <a href="/delivery-address"
+           class="back-btn">
+
+            ← Address
+
+        </a>
+
+    </div>
+
+
+
+    <!-- TITLE -->
+
+    <div class="confirm-title">
+
+        <h2>
+            ✓ Confirm Your Order
+        </h2>
+
+        <p>
+            Check your food, delivery address and total amount.
+        </p>
+
+    </div>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <div class="confirm-container">
+
+
+        <!-- ORDER ITEMS -->
+
+        <div class="confirm-card">
+
+            <h3>
+                🍽️ Order Items
+            </h3>
+
+            <div id="confirm-items"></div>
+
+        </div>
+
+
+
+        <!-- DELIVERY ADDRESS -->
+
+        <div class="confirm-card">
+
+            <h3>
+                📍 Delivery Address
+            </h3>
+
+            <div class="address-preview">
+
+                <p>
+                    <strong>Door No:</strong>
+                    <span id="door-number">-</span>
+                </p>
+
+                <p>
+                    <strong>Street:</strong>
+                    <span id="street">-</span>
+                </p>
+
+                <p>
+                    <strong>Landmark:</strong>
+                    <span id="landmark">-</span>
+                </p>
+
+                <p>
+                    <strong>District:</strong>
+                    <span id="district">-</span>
+                </p>
+
+                <p>
+                    <strong>State:</strong>
+                    <span id="state">-</span>
+                </p>
+
+                <p>
+                    <strong>Pincode:</strong>
+                    <span id="pincode">-</span>
+                </p>
+
+                <p>
+                    <strong>Contact:</strong>
+                    <span id="phone">-</span>
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PAYMENT / TOTAL -->
+
+        <div class="confirm-card summary-card">
+
+            <h3>
+                💳 Order Summary
+            </h3>
+
+            <div class="summary-row">
+
+                <span>
+                    Items
+                </span>
+
+                <span id="total-items">
+                    0
+                </span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>
+                    Food Total
+                </span>
+
+                <span id="food-total">
+                    ₹0
+                </span>
+
+            </div>
+
+            <div class="summary-row">
+
+                <span>
+                    Delivery Fee
+                </span>
+
+                <span>
+                    ₹40
+                </span>
+
+            </div>
+
+            <div class="summary-line"></div>
+
+            <div class="summary-total">
+
+                <span>
+                    Total
+                </span>
+
+                <span id="grand-total">
+                    ₹0
+                </span>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="confirm-order-btn"
+                onclick="confirmOrder()">
+
+                Confirm & Place Order →
+
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- BOTTOM -->
+
+    <div class="confirm-bottom">
+
+        <a href="/customer-dashboard"
+           class="home-btn">
+
+            ← Dashboard
+
+        </a>
+
+        <a href="/logout"
+           class="logout-btn">
+
+            Logout
+
+        </a>
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+/* =================================
+   LOAD ORDER DETAILS
+================================= */
+
+function loadOrderDetails() {
+
+
+    /* CART */
+
+    let cart = JSON.parse(
+        localStorage.getItem("foodCart")
+    ) || [];
+
+
+    let itemsContainer =
+        document.getElementById("confirm-items");
+
+
+    if (cart.length === 0) {
+
+        itemsContainer.innerHTML = `
+            <p style="color:#7f8982;">
+                No items found in your cart.
+            </p>
+        `;
+
+        return;
+
+    }
+
+
+    let foodTotal = 0;
+    let totalItems = 0;
+
+    let itemsHTML = "";
+
+
+    cart.forEach(function(item) {
+
+
+        let quantity =
+            item.quantity || 1;
+
+        let price =
+            Number(item.price);
+
+        let itemTotal =
+            price * quantity;
+
+
+        foodTotal += itemTotal;
+
+        totalItems += quantity;
+
+
+        itemsHTML += `
+
+            <div class="confirm-item">
+
+                <div class="confirm-item-icon">
+                    🍽️
+                </div>
+
+                <div class="confirm-item-info">
+
+                    <h4>
+                        ${item.name}
+                    </h4>
+
+                    <p>
+                        ₹${price} × ${quantity}
+                    </p>
+
+                </div>
+
+                <div class="confirm-item-price">
+                    ₹${itemTotal}
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    itemsContainer.innerHTML =
+        itemsHTML;
+
+
+    /* TOTALS */
+
+    let deliveryFee = 40;
+
+    let grandTotal =
+        foodTotal + deliveryFee;
+
+
+    document.getElementById(
+        "total-items"
+    ).innerText = totalItems;
+
+
+    document.getElementById(
+        "food-total"
+    ).innerText = "₹" + foodTotal;
+
+
+    document.getElementById(
+        "grand-total"
+    ).innerText = "₹" + grandTotal;
+
+
+
+    /* ADDRESS */
+
+    let address =
+        JSON.parse(
+            localStorage.getItem("deliveryAddress")
+        ) || {};
+
+
+    document.getElementById(
+        "door-number"
+    ).innerText =
+        address.door_number || "-";
+
+
+    document.getElementById(
+        "street"
+    ).innerText =
+        address.street || "-";
+
+
+    document.getElementById(
+        "landmark"
+    ).innerText =
+        address.landmark || "-";
+
+
+    document.getElementById(
+        "district"
+    ).innerText =
+        address.district || "-";
+
+
+    document.getElementById(
+        "state"
+    ).innerText =
+        address.state || "-";
+
+
+    document.getElementById(
+        "pincode"
+    ).innerText =
+        address.pincode || "-";
+
+
+    document.getElementById(
+        "phone"
+    ).innerText =
+        address.phone || "-";
+
+}
+
+
+
+/* =================================
+   CONFIRM ORDER
+================================= */
+
+function confirmOrder() {
+
+
+    let cart = JSON.parse(
+        localStorage.getItem("foodCart")
+    ) || [];
+
+
+    if (cart.length === 0) {
+
+        alert(
+            "Your cart is empty!"
+        );
+
+        return;
+
+    }
+
+
+    /* Save order status */
+
+    localStorage.setItem(
+        "orderStatus",
+        "Order Confirmed"
+    );
+
+
+    /* Clear cart */
+
+    localStorage.removeItem(
+        "foodCart"
+    );
+
+
+    /* Go to tracking */
+
+    window.location.href =
+        "/track-delivery";
+
+}
+
+
+/* =================================
+   START
+================================= */
+
+loadOrderDetails();
+
+</script>
+
+
+</body>
+
+</html>

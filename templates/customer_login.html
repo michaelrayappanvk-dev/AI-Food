@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Login</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <h1>FOOD<span>AI</span></h1>
+
+    <h2>Customer Login</h2>
+
+    <p>Enter your mobile number</p>
+
+    <form method="POST">
+
+        <input
+            type="tel"
+            name="phone"
+            placeholder="Enter mobile number"
+            required
+        >
+
+        <button type="submit">
+            Generate OTP →
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

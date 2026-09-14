@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Food Delivery</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            🍴 AI FOOD
+        </div>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/customer-login">Customer</a>
+            <a href="#">Restaurant</a>
+            <a href="#">Delivery</a>
+            <a href="/admin-login">Admin</a>
+        </nav>
+
+        <a href="/customer-login" class="nav-btn">
+            Get Started →
+        </a>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-left">
+
+            <p class="tag">
+                ✦ AI POWERED FOOD DELIVERY
+            </p>
+
+            <h1>
+                Smart Food Delivery
+                <br>
+                <span>Powered By AI</span>
+            </h1>
+
+            <p class="description">
+                AI-based route optimisation and order
+                management system designed to make food
+                delivery faster, smarter and more efficient.
+            </p>
+
+            <div class="buttons">
+
+                <a href="/customer-login" class="primary-btn">
+                    Order Food →
+                </a>
+
+                <a href="#roles" class="outline-btn">
+                    Explore System
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="hero-right">
+
+            <div class="glow"></div>
+
+            <div class="main-card">
+
+                <div class="delivery-icon">
+                    🛵
+                </div>
+
+                <p>AI DELIVERY</p>
+
+                <h2>
+                    Smart Route
+                </h2>
+
+                <span>
+                    Optimised for faster delivery
+                </span>
+
+            </div>
+
+
+            <div class="small-card top-card">
+
+                <strong>AI</strong>
+
+                <p>
+                    Route<br>
+                    Optimisation
+                </p>
+
+            </div>
+
+
+            <div class="small-card bottom-card">
+
+                <strong>24/7</strong>
+
+                <p>
+                    Order<br>
+                    Management
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ROLE SECTION ================= -->
+
+    <section class="roles" id="roles">
+
+        <div class="section-title">
+
+            <p>SMART FOOD DELIVERY</p>
+
+            <h2>
+                Everything You Need in One System
+            </h2>
+
+            <span>
+                One platform for customers, restaurants,
+                delivery partners and administrators.
+            </span>
+
+        </div>
+
+
+        <div class="role-grid">
+
+            <!-- CUSTOMER -->
+
+            <div class="role-card">
+
+                <div class="role-icon">
+                    👤
+                </div>
+
+                <h3>
+                    Customer
+                </h3>
+
+                <p>
+                    Browse restaurants, order food
+                    and track your delivery.
+                </p>
+
+                <a href="/customer-login">
+                    Explore →
+                </a>
+
+            </div>
+
+
+            <!-- RESTAURANT -->
+
+            <div class="role-card">
+
+                <div class="role-icon">
+                    🍽️
+                </div>
+
+                <h3>
+                    Restaurant
+                </h3>
+
+                <p>
+                    Manage food menu, orders
+                    and restaurant operations.
+                </p>
+
+                <a href="#">
+                    Manage →
+                </a>
+
+            </div>
+
+
+            <!-- DELIVERY -->
+
+            <div class="role-card">
+
+                <div class="role-icon">
+                    🛵
+                </div>
+
+                <h3>
+                    Delivery
+                </h3>
+
+                <p>
+                    Receive orders and follow
+                    AI-optimised delivery routes.
+                </p>
+
+                <a href="#">
+                    Deliver →
+                </a>
+
+            </div>
+
+
+            <!-- ADMIN -->
+
+            <div class="role-card">
+
+                <div class="role-icon">
+                    ⚙️
+                </div>
+
+                <h3>
+                    Admin
+                </h3>
+
+                <p>
+                    Monitor users, restaurants,
+                    orders and delivery partners.
+                </p>
+
+                <a href="/admin-login">
+                    Manage →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= AI ROUTE OPTIMISATION ================= -->
+
+    <section class="route-section">
+
+        <div class="route-text">
+
+            <p class="route-tag">
+                ✦ AI POWERED ROUTING
+            </p>
+
+            <h2>
+                Smarter Routes.
+                <br>
+                <span>Faster Delivery.</span>
+            </h2>
+
+            <p class="route-description">
+                Our AI analyses restaurant locations, customer
+                addresses and delivery distance to find an
+                efficient delivery route.
+            </p>
+
+            <div class="route-info">
+
+                <div>
+                    <strong>3.2 KM</strong>
+                    <small>Distance</small>
+                </div>
+
+                <div>
+                    <strong>18 MIN</strong>
+                    <small>Estimated Time</small>
+                </div>
+
+                <div>
+                    <strong>AI</strong>
+                    <small>Optimised Route</small>
+                </div>
+
+            </div>
+
+            <button class="primary-btn">
+                Optimise Route →
+            </button>
+
+        </div>
+
+
+        <div class="route-card">
+
+            <div class="map-header">
+
+                <span>
+                    AI ROUTE
+                </span>
+
+                <span class="live">
+                    ● LIVE
+                </span>
+
+            </div>
+
+            <div class="map-area">
+
+                <div class="restaurant-point">
+                    🍽️
+                    <span>
+                        Restaurant
+                    </span>
+                </div>
+
+                <div class="route-line"></div>
+
+                <div class="customer-point">
+                    📍
+                    <span>
+                        Customer
+                    </span>
+                </div>
+
+                <div class="delivery-bike">
+                    🛵
+                </div>
+
+            </div>
+
+            <div class="route-bottom">
+
+                <span>
+                    Optimised Delivery Path
+                </span>
+
+                <strong>
+                    18 min
+                </strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RESTAURANT SECTION ================= -->
+
+    <section class="restaurant-section">
+
+        <div class="section-title">
+
+            <p>
+                EXPLORE RESTAURANTS
+            </p>
+
+            <h2>
+                Find Food Near You
+            </h2>
+
+            <span>
+                Discover restaurants and choose the best
+                option based on distance and delivery time.
+            </span>
+
+        </div>
+
+
+        <div class="restaurant-grid">
+
+            <!-- RESTAURANT 1 -->
+
+            <div class="restaurant-card">
+
+                <div class="restaurant-image">
+                    🍕
+                </div>
+
+                <div class="restaurant-content">
+
+                    <div class="rating">
+                        ★ 4.8
+                    </div>
+
+                    <h3>
+                        Urban Pizza
+                    </h3>
+
+                    <p>
+                        📍 Salem Main Road
+                    </p>
+
+                    <div class="restaurant-info">
+
+                        <span>
+                            📏 1.8 KM
+                        </span>
+
+                        <span>
+                            ⏱️ 15 MIN
+                        </span>
+
+                    </div>
+
+                    <button class="menu-btn">
+                        View Menu →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESTAURANT 2 -->
+
+            <div class="restaurant-card">
+
+                <div class="restaurant-image">
+                    🍔
+                </div>
+
+                <div class="restaurant-content">
+
+                    <div class="rating">
+                        ★ 4.7
+                    </div>
+
+                    <h3>
+                        Green Bites
+                    </h3>
+
+                    <p>
+                        📍 Junction Road
+                    </p>
+
+                    <div class="restaurant-info">
+
+                        <span>
+                            📏 2.4 KM
+                        </span>
+
+                        <span>
+                            ⏱️ 20 MIN
+                        </span>
+
+                    </div>
+
+                    <button class="menu-btn">
+                        View Menu →
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESTAURANT 3 -->
+
+            <div class="restaurant-card">
+
+                <div class="restaurant-image">
+                    🍜
+                </div>
+
+                <div class="restaurant-content">
+
+                    <div class="rating">
+                        ★ 4.9
+                    </div>
+
+                    <h3>
+                        Spice Hub
+                    </h3>
+
+                    <p>
+                        📍 City Centre
+                    </p>
+
+                    <div class="restaurant-info">
+
+                        <span>
+                            📏 3.1 KM
+                        </span>
+
+                        <span>
+                            ⏱️ 24 MIN
+                        </span>
+
+                    </div>
+
+                    <button class="menu-btn">
+                        View Menu →
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ORDER MANAGEMENT ================= -->
+
+    <section class="order-section">
+
+        <div class="order-content">
+
+            <p class="route-tag">
+                ✦ SMART ORDER MANAGEMENT
+            </p>
+
+            <h2>
+                Manage Every Order
+                <br>
+                <span>Effortlessly.</span>
+            </h2>
+
+            <p class="route-description">
+                Track orders from restaurant preparation to
+                customer delivery with real-time order status.
+            </p>
+
+
+            <div class="order-steps">
+
+                <div class="order-step active">
+
+                    <div class="step-icon">
+                        ✓
+                    </div>
+
+                    <div>
+                        <h3>
+                            Order Placed
+                        </h3>
+
+                        <p>
+                            Customer placed the order
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="order-step active">
+
+                    <div class="step-icon">
+                        🍳
+                    </div>
+
+                    <div>
+                        <h3>
+                            Preparing
+                        </h3>
+
+                        <p>
+                            Restaurant is preparing food
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="order-step">
+
+                    <div class="step-icon">
+                        🛵
+                    </div>
+
+                    <div>
+                        <h3>
+                            Out for Delivery
+                        </h3>
+
+                        <p>
+                            Delivery partner is on the way
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="order-step">
+
+                    <div class="step-icon">
+                        📍
+                    </div>
+
+                    <div>
+                        <h3>
+                            Delivered
+                        </h3>
+
+                        <p>
+                            Order reaches the customer
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="order-card">
+
+            <div class="order-top">
+
+                <span>
+                    ORDER #1042
+                </span>
+
+                <b>
+                    ● ACTIVE
+                </b>
+
+            </div>
+
+            <h3>
+                Chicken Biryani
+            </h3>
+
+            <p class="order-restaurant">
+                🍽️ Spice Hub
+            </p>
+
+            <div class="order-details">
+
+                <div>
+                    <small>
+                        Distance
+                    </small>
+
+                    <strong>
+                        3.1 KM
+                    </strong>
+                </div>
+
+                <div>
+                    <small>
+                        ETA
+                    </small>
+
+                    <strong>
+                        18 MIN
+                    </strong>
+                </div>
+
+            </div>
+
+            <div class="progress">
+                <div></div>
+            </div>
+
+            <p class="delivery-status">
+                🛵 Delivery partner assigned
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= DELIVERY TRACKING ================= -->
+
+    <section class="tracking-section">
+
+        <div class="tracking-header">
+
+            <p>
+                ✦ REAL-TIME DELIVERY
+            </p>
+
+            <h2>
+                Track Your
+                <span>Delivery</span>
+            </h2>
+
+            <div>
+                Follow the delivery status from restaurant
+                to your doorstep.
+            </div>
+
+        </div>
+
+
+        <div class="tracking-container">
+
+            <div class="tracking-map">
+
+                <div class="map-road road-one"></div>
+                <div class="map-road road-two"></div>
+                <div class="map-road road-three"></div>
+
+
+                <div class="track-point restaurant-track">
+
+                    🍽️
+
+                    <small>
+                        Restaurant
+                    </small>
+
+                </div>
+
+
+                <div class="track-bike">
+                    🛵
+                </div>
+
+
+                <div class="track-point customer-track">
+
+                    📍
+
+                    <small>
+                        You
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="tracking-details">
+
+                <div class="tracking-status">
+
+                    <span>
+                        ● LIVE TRACKING
+                    </span>
+
+                    <strong>
+                        18 min
+                    </strong>
+
+                </div>
+
+                <h3>
+                    Your order is on the way
+                </h3>
+
+                <p>
+                    Delivery partner has picked up your
+                    order and is travelling to your location.
+                </p>
+
+
+                <div class="tracking-line">
+
+                    <div class="track-step done">
+
+                        <b>
+                            ✓
+                        </b>
+
+                        <span>
+                            Order Confirmed
+                        </span>
+
+                    </div>
+
+
+                    <div class="track-step done">
+
+                        <b>
+                            ✓
+                        </b>
+
+                        <span>
+                            Food Prepared
+                        </span>
+
+                    </div>
+
+
+                    <div class="track-step active">
+
+                        <b>
+                            🛵
+                        </b>
+
+                        <span>
+                            Out for Delivery
+                        </span>
+
+                    </div>
+
+
+                    <div class="track-step">
+
+                        <b>
+                            📍
+                        </b>
+
+                        <span>
+                            Delivered
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FINAL CTA ================= -->
+
+    <section class="final-cta">
+
+        <div class="cta-content">
+
+            <p class="cta-label">
+                ✦ SMARTER FOOD DELIVERY
+            </p>
+
+            <h2>
+                Deliver Faster.
+                <br>
+                <span>Serve Smarter.</span>
+            </h2>
+
+            <p class="cta-text">
+                AI-powered route optimisation and intelligent
+                order management for a better food delivery experience.
+            </p>
+
+
+            <div class="cta-buttons">
+
+                <a href="/customer-login"
+                   class="cta-primary">
+                    Get Started →
+                </a>
+
+                <a href="#roles"
+                   class="cta-secondary">
+                    Explore System
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-main">
+
+
+            <div class="footer-brand">
+
+                <h3>
+                    FOOD<span>AI</span>
+                </h3>
+
+                <p>
+                    AI based food delivery route optimisation
+                    and order management system.
+                </p>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Platform
+                </h4>
+
+                <a href="/customer-login">
+                    Customer
+                </a>
+
+                <a href="#">
+                    Restaurant
+                </a>
+
+                <a href="#">
+                    Delivery
+                </a>
+
+                <a href="/admin-login">
+                    Admin
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    Features
+                </h4>
+
+                <a href="#">
+                    AI Route
+                </a>
+
+                <a href="#">
+                    Order Management
+                </a>
+
+                <a href="#">
+                    Live Tracking
+                </a>
+
+                <a href="#">
+                    Analytics
+                </a>
+
+            </div>
+
+
+            <div class="footer-column">
+
+                <h4>
+                    System
+                </h4>
+
+                <a href="#">
+                    About
+                </a>
+
+                <a href="#">
+                    Technology
+                </a>
+
+                <a href="#">
+                    Contact
+                </a>
+
+                <a href="#">
+                    Support
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 FOODAI. All rights reserved.
+            </span>
+
+            <span>
+                AI • ROUTE • DELIVERY
+            </span>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

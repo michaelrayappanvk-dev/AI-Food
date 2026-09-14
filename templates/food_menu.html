@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Food Menu - FOODAI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="food-menu-page">
+
+    <!-- HEADER -->
+    <div class="food-menu-header">
+
+        <div>
+            <h1>FOOD<span>AI</span></h1>
+
+            <p>
+                Choose your favourite food
+            </p>
+        </div>
+
+        <a href="/restaurants" class="back-btn">
+            ← Restaurants
+        </a>
+
+    </div>
+
+
+    <!-- RESTAURANT -->
+    <div class="selected-restaurant">
+
+        <h2>Pizza Hub</h2>
+
+        <p>
+            📍 Salem &nbsp; • &nbsp;
+            ⭐ 4.5 &nbsp; • &nbsp;
+            1.2 km
+        </p>
+
+    </div>
+
+
+    <!-- FOOD GRID -->
+    <div class="food-grid">
+
+
+        <!-- FOOD 1 -->
+        <div class="food-card">
+
+            <div class="food-image">
+                🍕
+            </div>
+
+            <div class="food-info">
+
+                <h3>Chicken Pizza</h3>
+
+                <p>
+                    Delicious chicken pizza with
+                    fresh vegetables and cheese.
+                </p>
+
+                <div class="food-bottom">
+
+                    <span class="food-price">
+                        ₹249
+                    </span>
+
+                    <button
+                        type="button"
+                        class="add-cart-btn"
+                        onclick="addToCart('Chicken Pizza', 249)">
+                        + Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOD 2 -->
+        <div class="food-card">
+
+            <div class="food-image">
+                🍔
+            </div>
+
+            <div class="food-info">
+
+                <h3>Chicken Burger</h3>
+
+                <p>
+                    Crispy chicken burger with
+                    fresh vegetables and sauce.
+                </p>
+
+                <div class="food-bottom">
+
+                    <span class="food-price">
+                        ₹149
+                    </span>
+
+                    <button
+                        type="button"
+                        class="add-cart-btn"
+                        onclick="addToCart('Chicken Burger', 149)">
+                        + Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOD 3 -->
+        <div class="food-card">
+
+            <div class="food-image">
+                🍝
+            </div>
+
+            <div class="food-info">
+
+                <h3>Italian Pasta</h3>
+
+                <p>
+                    Creamy pasta prepared with
+                    fresh ingredients.
+                </p>
+
+                <div class="food-bottom">
+
+                    <span class="food-price">
+                        ₹179
+                    </span>
+
+                    <button
+                        type="button"
+                        class="add-cart-btn"
+                        onclick="addToCart('Italian Pasta', 179)">
+                        + Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOD 4 -->
+        <div class="food-card">
+
+            <div class="food-image">
+                🍟
+            </div>
+
+            <div class="food-info">
+
+                <h3>French Fries</h3>
+
+                <p>
+                    Crispy golden fries served
+                    with special seasoning.
+                </p>
+
+                <div class="food-bottom">
+
+                    <span class="food-price">
+                        ₹99
+                    </span>
+
+                    <button
+                        type="button"
+                        class="add-cart-btn"
+                        onclick="addToCart('French Fries', 99)">
+                        + Add
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- VIEW CART -->
+    <div class="food-cart-section">
+
+        <a href="/cart" class="view-cart-btn">
+
+            🛒 View Cart
+
+            <span id="cart-count">
+                (0)
+            </span>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ADD TO CART */
+
+function addToCart(name, price) {
+
+    let cart = JSON.parse(
+        localStorage.getItem("foodCart")
+    ) || [];
+
+
+    let existingItem = cart.find(
+        item => item.name === name
+    );
+
+
+    if (existingItem) {
+
+        existingItem.quantity =
+            (existingItem.quantity || 1) + 1;
+
+    } else {
+
+        cart.push({
+
+            name: name,
+
+            price: price,
+
+            quantity: 1
+
+        });
+
+    }
+
+
+    localStorage.setItem(
+        "foodCart",
+        JSON.stringify(cart)
+    );
+
+
+    updateCartCount();
+
+}
+
+
+/* UPDATE CART COUNT */
+
+function updateCartCount() {
+
+    let cart = JSON.parse(
+        localStorage.getItem("foodCart")
+    ) || [];
+
+
+    let totalItems = 0;
+
+
+    cart.forEach(function(item) {
+
+        totalItems +=
+            item.quantity || 1;
+
+    });
+
+
+    document.getElementById(
+        "cart-count"
+    ).innerText =
+        "(" + totalItems + ")";
+
+}
+
+
+/* LOAD CART COUNT */
+
+updateCartCount();
+
+</script>
+
+</body>
+
+</html>
