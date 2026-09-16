@@ -1,9 +1,60 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import random
+import os
+import requests
 
 app = Flask(__name__)
 
-app.secret_key = "foodai-secret-key-123"
+app.secret_key = os.environ.get(
+    "SECRET_KEY",
+    "foodai-secret-key-123"
+)
+
+
+# =========================
+# SEND EMAIL OTP
+# =========================
+
+def send_otp_email(email, otp):
+
+    api_key = os.environ.get("RESEND_API_KEY")
+
+    url = "https://api.resend.com/emails"
+
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+
+    data = {
+        "from": "FOODAI <onboarding@resend.dev>",
+        "to": [email],
+        "subject": "FOODAI Customer Login OTP",
+        "html": f"""
+        <div style="font-family:Arial;padding:20px;">
+            <h2>FOODAI</h2>
+
+            <p>Your Customer Login OTP is:</p>
+
+            <h1 style="letter-spacing:8px;">{otp}</h1>
+
+            <p>This OTP is valid for this login attempt.</p>
+
+            <p>Thank you for using FOODAI.</p>
+        </div>
+        """
+    }
+
+    response = requests.post(
+        url,
+        headers=headers,
+        json=data
+    )
+
+    print("RESEND STATUS:", response.status_code)
+    print("RESEND RESPONSE:", response.text)
+
+    return response.status_code == 200
 
 
 # =========================
@@ -32,20 +83,20 @@ def customer_login():
                 error="Please enter your email."
             )
 
-        # Generate 6 digit OTP
         otp = str(random.randint(100000, 999999))
 
-        # Save email and OTP in session
         session["customer_email"] = email
         session["customer_otp"] = otp
         session.modified = True
 
-        # Temporary testing
-        # OTP will appear in terminal
-        print("================================")
-        print("CUSTOMER EMAIL:", email)
-        print("CUSTOMER OTP:", otp)
-        print("================================")
+        # Send OTP to email
+        email_sent = send_otp_email(email, otp)
+
+        if not email_sent:
+            return render_template(
+                "customer_login.html",
+                error="Unable to send OTP. Please try again."
+            )
 
         return redirect(url_for("verify_otp"))
 
@@ -68,7 +119,6 @@ def verify_otp():
 
             session["customer_logged_in"] = True
 
-            # Remove OTP after successful login
             session.pop("customer_otp", None)
 
             session.modified = True
@@ -163,28 +213,16 @@ def delivery_address():
     if request.method == "POST":
 
         session["delivery_address"] = {
-
             "door_number": request.form.get("door_number"),
-
             "street": request.form.get("street"),
-
             "landmark": request.form.get("landmark"),
-
             "district": request.form.get("district"),
-
             "state": request.form.get("state"),
-
             "pincode": request.form.get("pincode"),
-
             "phone": request.form.get("phone")
         }
 
         session.modified = True
-
-        print("================================")
-        print("DELIVERY ADDRESS SAVED:")
-        print(session["delivery_address"])
-        print("================================")
 
         return redirect(url_for("confirm_order"))
 
