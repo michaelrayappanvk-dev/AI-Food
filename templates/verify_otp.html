@@ -1,8 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
-    <title>Verify OTP</title>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Verify OTP - FOODAI</title>
 
     <link rel="stylesheet"
           href="{{ url_for('static', filename='css/style.css') }}">
@@ -18,13 +24,15 @@
     <h2>Verify OTP</h2>
 
     <p>
-        OTP has been sent to your mobile number.
+        OTP has been sent to your email address.
     </p>
 
     {% if error %}
+
         <p style="color:#ff5555;">
             {{ error }}
         </p>
+
     {% endif %}
 
     <form method="POST"
@@ -48,4 +56,5 @@
 </div>
 
 </body>
+
 </html>

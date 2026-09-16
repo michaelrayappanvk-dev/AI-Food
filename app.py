@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+import random
 
 app = Flask(__name__)
 
@@ -18,9 +19,68 @@ def home():
 # CUSTOMER LOGIN
 # =========================
 
-@app.route("/customer-login")
+@app.route("/customer-login", methods=["GET", "POST"])
 def customer_login():
+
+    if request.method == "POST":
+
+        email = request.form.get("email")
+
+        if not email:
+            return render_template(
+                "customer_login.html",
+                error="Please enter your email."
+            )
+
+        # Generate 6 digit OTP
+        otp = str(random.randint(100000, 999999))
+
+        # Save email and OTP in session
+        session["customer_email"] = email
+        session["customer_otp"] = otp
+        session.modified = True
+
+        # Temporary testing
+        # OTP will appear in terminal
+        print("================================")
+        print("CUSTOMER EMAIL:", email)
+        print("CUSTOMER OTP:", otp)
+        print("================================")
+
+        return redirect(url_for("verify_otp"))
+
     return render_template("customer_login.html")
+
+
+# =========================
+# VERIFY OTP
+# =========================
+
+@app.route("/verify-otp", methods=["GET", "POST"])
+def verify_otp():
+
+    if request.method == "POST":
+
+        entered_otp = request.form.get("otp")
+        saved_otp = session.get("customer_otp")
+
+        if entered_otp == saved_otp:
+
+            session["customer_logged_in"] = True
+
+            # Remove OTP after successful login
+            session.pop("customer_otp", None)
+
+            session.modified = True
+
+            return redirect(url_for("customer_dashboard"))
+
+        return render_template(
+            "verify_otp.html",
+            error="Invalid OTP. Please try again."
+        )
+
+    return render_template("verify_otp.html")
 
 
 # =========================
@@ -196,6 +256,7 @@ def admin_login():
 def admin_dashboard():
 
     if session.get("admin_logged_in") is not True:
+
         return redirect(url_for("admin_login"))
 
     return render_template("admin_dashboard.html")
@@ -218,6 +279,7 @@ def logout():
 # =========================
 
 if __name__ == "__main__":
+
     app.run(
         host="0.0.0.0",
         port=5000,
