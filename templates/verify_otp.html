@@ -1,60 +1,56 @@
-# =========================
-# SEND EMAIL OTP
-# =========================
+<!DOCTYPE html>
+<html lang="en">
 
-def send_otp_email(email, otp):
+<head>
+    <meta charset="UTF-8">
 
-    api_key = os.environ.get("RESEND_API_KEY")
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    if not api_key:
-        print("ERROR: RESEND_API_KEY is missing")
-        return False
+    <title>Verify OTP - FOODAI</title>
 
-    url = "https://api.resend.com/emails"
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
 
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json"
-    }
+<body>
 
-    data = {
-        "from": "FOODAI <onboarding@resend.dev>",
-        "to": [email],
-        "subject": "FOODAI Customer Login OTP",
-        "html": f"""
-        <div style="font-family:Arial;padding:20px;">
-            <h2>FOODAI</h2>
+<div class="login-box">
 
-            <p>Your Customer Login OTP is:</p>
+    <h1>FOOD<span>AI</span></h1>
 
-            <h1 style="letter-spacing:8px;">{otp}</h1>
+    <h2>Verify OTP</h2>
 
-            <p>This OTP is valid for this login attempt.</p>
+    <p>
+        OTP has been sent to your email address.
+    </p>
 
-            <p>Thank you for using FOODAI.</p>
-        </div>
-        """
-    }
+    {% if error %}
+        <p style="color:#ff5555;">
+            {{ error }}
+        </p>
+    {% endif %}
 
-    try:
+    <form method="POST"
+          action="{{ url_for('verify_otp') }}">
 
-        response = requests.post(
-            url,
-            headers=headers,
-            json=data,
-            timeout=20
-        )
+        <input
+            type="text"
+            name="otp"
+            placeholder="Enter 6-digit OTP"
+            maxlength="6"
+            inputmode="numeric"
+            required
+        >
 
-        print("========== RESEND DEBUG ==========")
-        print("RECIPIENT:", email)
-        print("STATUS:", response.status_code)
-        print("RESPONSE:", response.text)
-        print("==================================")
+        <button type="submit">
+            Verify OTP →
+        </button>
 
-        return response.status_code == 200
+    </form>
 
-    except Exception as e:
+</div>
 
-        print("RESEND ERROR:", str(e))
+</body>
 
-        return False
+</html>
